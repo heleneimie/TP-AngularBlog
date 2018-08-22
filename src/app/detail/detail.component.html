@@ -1,0 +1,15 @@
+<article class="article">
+  <h3 class="card-title article__title">{{ article.title }}</h3>
+  <p class="card-text article__content">{{ article.content }}</p>
+  <div class="article__comments">
+    <h5 *ngIf="article.comments && article.comments.length">Commentaires</h5>
+    <!-- Le && pose la condition s'il existe des commentaires et qu'ils sont supérieurs à 0 alors on affiche. -->
+    <!-- Obligatoire car le template est affiché avant de recevoir la variable article, via la callback / promise -->
+    <ul *ngIf="article.comments && article.comments.length">
+      <li *ngFor="let articleComment of article.comments">{{ articleComment.username }} : {{ articleComment.content }}</li>
+    </ul>
+  </div>
+  <button class="btn btn-warning" [routerLink]="['/admin/article', article.id]">
+    Modifier l'article
+  </button>
+</article>
