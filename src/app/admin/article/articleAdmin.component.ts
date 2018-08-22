@@ -10,12 +10,11 @@ import { FormControl } from '@angular/forms';
 
 export class ArticleAdminComponent implements OnInit {
 
-  nameInput = FormControl;
-
   constructor(private route: ActivatedRoute, private articleService: ArticleService) { }
 
   public article = {};
-  public success: boolean = false;
+  public success = false;
+  public msg = '';
 
   ngOnInit() {
     const snapshot: ActivatedRouteSnapshot = this.route.snapshot;
