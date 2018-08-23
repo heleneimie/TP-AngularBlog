@@ -1,8 +1,4 @@
 <form novalidate (submit)="saveForm()" #myForm="ngForm">
-  <div *ngIf="success" class="alert alert-success" role="alert">
-    {{ msg }}
-  </div>
-
   <div class="form-group">
     <label for="articleTitle">Titre article</label>
     <!-- ngModel permet de binder l'objet avec la vue. Si c'est modifié dans les 2 sens, les changements seront répercutés automatiquement. -->

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-article-admin',
@@ -9,10 +10,8 @@ import { ArticleService } from '../../services/article.service';
 
 export class ArticleAdminComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private articleService: ArticleService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private articleService: ArticleService, private toastr: ToastrService) { }
   public article: any = {};
-  public success = false;
-  public msg = '';
   public addState: boolean = true;
 
   ngOnInit() {
@@ -36,23 +35,17 @@ export class ArticleAdminComponent implements OnInit {
     // si formulaire ajout article
     if (this.addState) {
       this.articleService.addArticle(this.article).subscribe((response: {id}) => {
-        this.success = true;
-        this.msg = 'Votre article a bien été ajouté';
+        this.toastr.success('Votre article a bien été ajouté', 'Hourra !');
         this.router.navigate(['article/', response.id]);
       }, (error) => {
-        this.success = false;
-        this.msg = 'Le champ est requis';
         return error;
       });
 
     } else {
 
       this.articleService.updateArticle(this.article).subscribe((articleFromServer: any[]) => {
-        this.success = true;
-        this.msg = 'Vos modifications ont été prises en compte';
+        this.toastr.success('Vos modifications ont été prises en compte');
       }, (error) => {
-        this.success = false;
-        this.msg = 'Le champ est requis';
         return error;
       });
     }

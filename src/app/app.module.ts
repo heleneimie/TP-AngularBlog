@@ -6,6 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+// module qui permet l'ajout de flashbags
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ListComponent } from './list/list.component';
@@ -46,6 +51,11 @@ const appRoutes: Routes = [
       { enableTracing: false } // <-- debugging purposes only
     ),
     FormsModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+    }), // ToastrModule added
   ],
   // déclare les services
   providers: [ArticleService],
