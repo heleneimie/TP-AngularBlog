@@ -51,9 +51,19 @@ export class ArticleService {
     return this.http.get(`http://localhost:4233/rest/articles/${id}`);
   }
 
+  // ajoute un article
+  addArticle(article) {
+    return this.http.post(`http://localhost:4233/rest/articles`, article);
+  }
+
   // met à jour un article
   updateArticle(article) {
     return this.http.put(`http://localhost:4233/rest/articles/${article.id}`, article);
+  }
+
+  // supprime un article
+  deleteArticleById(id) {
+    return this.http.delete(`http://localhost:4233/rest/articles/${id}`);
   }
 
 }

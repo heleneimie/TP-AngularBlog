@@ -1,5 +1,6 @@
 <h2>Articles</h2>
 
-<section class="d-flex justify-content-between">
+<button [routerLink]="['/admin/article']" class="btn btn-outline-primary btn-lg mb-5">Ajouter un article</button>
+<section class="row">
   <app-article *ngFor="let currentArticle of articles" [article]="currentArticle"></app-article>
 </section>

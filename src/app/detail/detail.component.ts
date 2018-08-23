@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Router } from '@angular/router';
 import { ArticleService } from '../services/article.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { ArticleService } from '../services/article.service';
 })
 export class DetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private articleService: ArticleService) { }
+  constructor(private route: ActivatedRoute, private articleService: ArticleService, private router: Router) { }
 
-  public article = {};
+  public article: any = {};
 
   ngOnInit() {
     const snapshot: ActivatedRouteSnapshot = this.route.snapshot;
@@ -22,4 +23,18 @@ export class DetailComponent implements OnInit {
       return error;
     });
   }
+
+  // supprime un article
+  deleteArticle() {
+    this.articleService.deleteArticleById(this.article.id).subscribe(
+      result => {
+        // console.log(result);
+        this.router.navigate(['/articles']);
+      },
+      (error) => {
+        return error;
+      }
+    );
+  }
+
 }

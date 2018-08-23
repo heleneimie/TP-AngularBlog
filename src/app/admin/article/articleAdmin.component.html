@@ -5,12 +5,14 @@
 
   <div class="form-group">
     <label for="articleTitle">Titre article</label>
-    <!-- ngModel permet de binder l'objet avec la vue. Sic'est modifié dans les 2 sens, les changements seront répercutés automatiquement. -->
+    <!-- ngModel permet de binder l'objet avec la vue. Si c'est modifié dans les 2 sens, les changements seront répercutés automatiquement. -->
     <input [(ngModel)]="article.title"
            required
            #titleInput="ngModel"
            name="articleTitle" type="text" class="form-control" id="articleTitle" aria-describedby="articleTitleHelp" placeholder="{{ article.title }}">
-    <div class="alert alert-danger" role="alert" [hidden]="!titleInput.errors?.required">Le titre est requis</div>
+    <div class="alert alert-danger" role="alert" *ngIf="titleInput.dirty && titleInput.errors?.required">
+      Le titre est requis
+    </div>
   </div>
   <div class="form-group">
     <label for="articleContent">Contenu de l'article</label>
@@ -20,7 +22,13 @@
       [(ngModel)]="article.content"
       name="articleContent" id="articleContent" rows="3" class="form-control">
     </textarea>
-    <div class="alert alert-danger" role="alert" [hidden]="!contentInput.errors?.required">Le contenu est requis</div>
+    <div class="alert alert-danger" role="alert" *ngIf="contentInput.dirty && contentInput.errors?.required">
+      Le contenu est requis
+    </div>
   </div>
-  <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary">Modifier</button>
+  <button [disabled]="myForm.invalid" type="submit"
+          class="btn"
+          [ngClass]="{'btn-warning': !addState, 'btn-primary': addState}" >
+    {{ addState ? 'Ajouter' : 'Modifier' }}
+  </button>
 </form>

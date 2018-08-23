@@ -22,6 +22,8 @@ const appRoutes: Routes = [
   { path: 'articles', component: ListComponent },
   { path: 'article/:id', component: DetailComponent },
   { path: 'admin/article/:id', component: ArticleAdminComponent },
+  { path: 'admin/article/:id', component: ArticleAdminComponent },
+  { path: 'admin/article', component: ArticleAdminComponent },
 ];
 
 @NgModule({
