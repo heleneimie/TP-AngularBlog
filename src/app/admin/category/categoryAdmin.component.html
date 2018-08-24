@@ -15,10 +15,11 @@
   </button>
 </form>
 
+<h5 class="mt-5">Catégories existantes</h5>
 <ul>
-  <li *ngFor="let category of categories">{{ category.label }}
-    <button (click)="deleteCategory(category.id)" class="btn btn-danger btn-sm">
-      Supprimer la catégorie
+  <li class="mt-2" *ngFor="let category of categories">{{ category.label }}
+    <button (click)="deleteCategory(category.id)" class="btn btn-danger btn-sm ml-5">
+      Supprimer
     </button>
   </li>
 </ul>

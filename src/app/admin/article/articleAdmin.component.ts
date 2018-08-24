@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
+import { CategoryService } from '../../services/category.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -10,30 +11,42 @@ import { ToastrService } from 'ngx-toastr';
 
 export class ArticleAdminComponent implements OnInit {
 
+  public article: any = {};
+  public addState: boolean = true;
+  public categories: any;
+  public selectedCategories = [];
+  private snapshot: ActivatedRouteSnapshot;
+  private id: number;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private articleService: ArticleService,
-    private toastr: ToastrService
+    private categoryService: CategoryService,
+    private toastr: ToastrService,
   ) {}
 
-  public article: any = {};
-  public addState: boolean = true;
-
+  // à l'initialisation du composant
   ngOnInit() {
-    const snapshot: ActivatedRouteSnapshot = this.route.snapshot;
-    const id = Number(snapshot.params.id);
+    this.getCategories();
+    this.snapshot = this.route.snapshot;
+    this.id = Number(this.snapshot.params.id);
 
     // si l'id est défini (donc on est dans formulaire modification article)
-    if (id) {
+    if (this.id) {
       this.addState = false;
-      // récupérer le contenu du formulaire
-      this.articleService.getArticleById(id).subscribe((articleFromServer: any[]) => {
-        this.article = articleFromServer;
-      }, (error) => {
-        return error;
-      });
+      this.getArticle();
     }
+  }
+
+  // récupère un article
+  getArticle() {
+    // récupérer le contenu du formulaire
+    this.articleService.getArticleById(this.id).subscribe((articleFromServer: any[]) => {
+      this.article = articleFromServer;
+    }, (error) => {
+      return error;
+    });
   }
 
   saveForm() {
@@ -47,8 +60,8 @@ export class ArticleAdminComponent implements OnInit {
         return error;
       });
 
+      // sinon formulaire de mise à jour
     } else {
-
       this.articleService.updateArticle(this.article).subscribe((articleFromServer: any[]) => {
         this.toastr.success('Vos modifications ont été prises en compte');
       }, (error) => {
@@ -56,4 +69,14 @@ export class ArticleAdminComponent implements OnInit {
       });
     }
   }
+
+  // récupère les catégories
+  public getCategories() {
+    this.categoryService.getCategories().subscribe((response) => {
+      this.categories = response;
+    }, (error) => {
+      return error;
+    });
+  }
+
 }

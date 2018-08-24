@@ -66,4 +66,9 @@ export class ArticleService {
     return this.http.delete(`http://localhost:4233/rest/articles/${id}`);
   }
 
+  // ajoute un commentaire à l'article
+  articleComment(id, data) {
+    return this.http.post(`http://localhost:4233/rest/articles/${id}/comments`, data);
+  }
+
 }

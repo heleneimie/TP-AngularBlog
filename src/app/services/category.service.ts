@@ -18,7 +18,6 @@ export class CategoryService {
 
   // ajoute une catégorie
   addCategory(category) {
-    console.log(category);
     return this.http.post(`http://localhost:4233/rest/categories`, category);
   }
 

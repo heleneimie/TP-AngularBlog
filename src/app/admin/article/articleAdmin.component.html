@@ -22,6 +22,17 @@
       Le contenu est requis
     </div>
   </div>
+
+  <div class="row">
+    <div class="form-group col-md">
+      <label for="exampleFormControlSelect1">Catégorie :</label>
+      <select class="form-control" id="exampleFormControlSelect1" name="selectedCategories" [(ngModel)]="selectedCategories">
+        <option *ngFor="let categorie of categories" value="{{ categorie }}">{{ categorie?.label }} {{ categorie?.title }}</option>
+      </select>
+      <button [routerLink]="['/admin/category']" class="btn btn-outline-secondary btn-sm mb-5 mt-2 col-md-5">Ajouter une catégorie</button>
+    </div>
+  </div>
+
   <button [disabled]="myForm.invalid" type="submit"
           class="btn"
           [ngClass]="{'btn-warning': !addState, 'btn-primary': addState}" >
