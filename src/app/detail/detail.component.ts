@@ -27,8 +27,7 @@ export class DetailComponent implements OnInit {
   // supprime un article
   deleteArticle() {
     this.articleService.deleteArticleById(this.article.id).subscribe(
-      result => {
-        // console.log(result);
+      (result) => {
         this.router.navigate(['/articles']);
       },
       (error) => {

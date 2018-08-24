@@ -1,9 +1,15 @@
 <article class="article col-md mb-5">
   <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h3 class="card-title article__title">{{ article.title }}</h3>
-      <span *ngIf="article.comments.length" class="badge badge-info card-link article__comments">{{ article.comments.length }} commentaires</span>
-      <p class="card-text article__content">{{ article.content | truncatePipe:100 }}</p>
+      <h3 class="card-title article__title">
+        {{ article.title }}
+      </h3>
+      <p class="card-text article__content">
+        {{ article.content | truncatePipe:100 }}
+      </p>
+      <span *ngIf="article.comments.length" class="badge badge-info card-link article__comments">
+        {{ article.comments.length }} commentaires
+      </span>
       <button class="btn btn-primary" [routerLink]="['/article', article.id]">
           Voir l'article
       </button>

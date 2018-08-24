@@ -1,0 +1,24 @@
+<form novalidate (submit)="saveForm()" #myForm="ngForm">
+  <div class="form-group">
+    <label for="categoryTitle">Titre de la catégorie</label>
+    <!-- ngModel permet de binder l'objet avec la vue. Si c'est modifié dans les 2 sens, les changements seront répercutés automatiquement. -->
+    <input [(ngModel)]="category.label"
+           required
+           #labelInput="ngModel"
+           name="categoryTitle" type="text" class="form-control" id="categoryTitle" aria-describedby="categoryTitleHelp" placeholder="{{ category.label }}">
+    <div class="alert alert-danger" role="alert" *ngIf="labelInput.dirty && labelInput.errors?.required">
+      Le titre de la catégorie est requis
+    </div>
+  </div>
+  <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary">
+    Ajouter
+  </button>
+</form>
+
+<ul>
+  <li *ngFor="let category of categories">{{ category.label }}
+    <button (click)="deleteCategory(category.id)" class="btn btn-danger btn-sm">
+      Supprimer la catégorie
+    </button>
+  </li>
+</ul>

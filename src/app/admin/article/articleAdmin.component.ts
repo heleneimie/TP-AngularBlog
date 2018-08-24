@@ -10,7 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 
 export class ArticleAdminComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private articleService: ArticleService, private toastr: ToastrService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private articleService: ArticleService,
+    private toastr: ToastrService
+  ) {}
+
   public article: any = {};
   public addState: boolean = true;
 
