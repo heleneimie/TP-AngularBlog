@@ -2,9 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.4.
 
-## Development server
+## Launch development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run **`ng serve`** for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Launch API's server
+
+Place onto the server folder and run **`npm start`** to launch the API server.
+
+----
 
 ## Code scaffolding
 
